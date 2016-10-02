@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wall',
+    'gdstorage',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+#
+# Google Drive Storage Settings
+#
+
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'client_secret.json'
+GOOGLE_DRIVE_STORAGE_SERVICE_EMAIL = 'adbor88@gmail.com'

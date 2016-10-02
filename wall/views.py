@@ -1,3 +1,12 @@
-from django.shortcuts import render
+# from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Post
 
-# Create your views here.
+
+class BaseView(ListView):
+    model = Post
+    template_name = 'wall/post_list.html'
+    context_object_name = 'post'
+
+    def get_queryset(self):
+        return Post.objects.order_by('-id')

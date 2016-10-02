@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>about something and nothing...</h1>
+<ul>
+    {% for post in object_list %}
+    <li>
+        {{ post.date }}<br>
+        {{ post.title }}<br>
+        <img src="https://drive.google.com/uc?export=view&id=" alt="photo">
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
