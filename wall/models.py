@@ -1,6 +1,7 @@
 from django.db import models
 from gdstorage.storage import GoogleDriveStorage
 from django.dispatch import receiver
+from .quickstart import main
 
 
 # Define Google Drive Storage
@@ -23,9 +24,10 @@ class Post(models.Model):
 @receiver(models.signals.post_save, sender=Post)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
-        """a = Post.objects.last()
-        a.lat = 0
-        a.lon = 0
-        a.save()"""
+        img_id = str(main())
+        url = 'https://docs.google.com/uc?id='+img_id
+        a = Post.objects.last()
+        a.url = url
+        a.save()
 
 

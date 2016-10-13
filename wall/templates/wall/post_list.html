@@ -11,7 +11,7 @@
     <li>
         {{ post.date }}<br>
         {{ post.title }}<br>
-        <img src="https://drive.google.com/uc?export=view&id=" alt="photo">
+        <img src="{{ post.url }}" alt="photo">
     </li>
     {% endfor %}
 </ul>
