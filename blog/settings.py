@@ -126,9 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-#
 # Google Drive Storage Settings
-#
 
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'client_secret.json'
 GOOGLE_DRIVE_STORAGE_SERVICE_EMAIL = 'adbor88@gmail.com'
