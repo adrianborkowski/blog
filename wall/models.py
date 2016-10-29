@@ -1,5 +1,6 @@
 from django.db import models
 from gdstorage.storage import GoogleDriveStorage
+from django.dispatch import receiver
 
 
 # Define Google Drive Storage
@@ -17,4 +18,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
+from .coordinates import add_coordinates
+
+
+@receiver(models.signals.post_save, sender=Post)
+def execute_after_save(sender, instance, created, *args, **kwargs):
+    if created:
+        add_coordinates()
 
