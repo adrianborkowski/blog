@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ASANBlog</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script async defer
@@ -17,8 +17,8 @@
     {% for post in object_list %}
     <li>
         {{ post.date }}<br>
-        {{ post.title }}<br>
-        <img id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="photo">
+        <h2>{{ post.title }}</h2><br>
+        <img id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
         <div class="map" id="map-{{ forloop.counter }}"></div>
     </li>
     <script>
@@ -26,20 +26,25 @@
     .replace('/view?usp=drivesdk','')
     .replace('https://drive.google.com/file/d/', 'https://drive.google.com/uc?export=view&id=');
     $("#post-{{ forloop.counter }}").attr("src", url);
+    </script>
+    {% endfor %}
 
+    <script>
     function initMap() {
+        {% for post in object_list %}
         var place = {lat: {{ post.lat }}, lng: {{ post.lon }} };
-        var map = new google.maps.Map(document.getElementById("map-{{ forloop.counter }}"), {
-          zoom: 16,
-          center: place
+        var map = new google.maps.Map($("#map-{{ forloop.counter }}")[0], {
+          zoom: 14,
+          center: place,
+          mapTypeId: google.maps.MapTypeId.HYBRID
         });
         var marker = new google.maps.Marker({
           position: place,
           map: map
         });
+        {% endfor %}
       }
     </script>
-    {% endfor %}
 </ul>
 </body>
 </html>
