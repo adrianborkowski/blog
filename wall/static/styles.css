@@ -14,7 +14,7 @@ body {
 
 .header {
     padding-top: 10vh;
-    height: 33vh;
+    height: 45vh;
     text-align: center;
 }
 
@@ -28,15 +28,19 @@ body {
     padding-left: 5vw;
 }
 
-img {
-    margin-bottom:5vh;
+.btn{
+    border-radius: 0px;
+    width: 100%;
+    color: white;
+    background-color: #262626;
 }
 
 .map {
-    width: 100%;
+    width: 60%;
     height: 40vh;
-    background-color: grey;
-    // display: none;
+    margin: auto;
+    display: none;
+    border: 5px solid #262626;
 }
 
 .content {
