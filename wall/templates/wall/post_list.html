@@ -16,11 +16,11 @@
 
 </head>
 <body>
-<!-- <div class="stripe"></div> -->
+<div class="stripe"></div>
 <div class="container-fluid">
     <div class="header">
         <h1>about something and nothing...</h1>
-        <h5>~ by adi</h5>
+        <h5>~ by adrian borkowski</h5>
     </div>
     {% for post in object_list %}
         <div class="title"><h1>{{ post.title }}</h1></div>
@@ -46,7 +46,7 @@
                 $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap() {
                     var place = {lat: {{ post.lat }}, lng: {{ post.lon }} };
                     var map = new google.maps.Map($("#map-{{ forloop.counter }}")[0], {
-                      zoom: 14,
+                      zoom: 15,
                       center: place,
                       mapTypeId: google.maps.MapTypeId.HYBRID
                     });
@@ -59,8 +59,8 @@
         {% endfor %}
     });
 
-
     </script>
 </div>
+ <div id="footer"> © 2017 adrian borkowski. all rights reserved. </div>
 </body>
 </html>
