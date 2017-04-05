@@ -1,1 +1,1 @@
-web: gunicorn asanblog.wsgi --log-file -
+web: gunicorn asanblog:app --log-file -
