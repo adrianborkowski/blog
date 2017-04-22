@@ -19,5 +19,5 @@ from wall.views import BaseView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^wall/', BaseView.as_view()),
+    url(r'', BaseView.as_view()),
 ]

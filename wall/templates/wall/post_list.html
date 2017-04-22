@@ -31,9 +31,9 @@
     <div>
         {% for post in object_list %}
             <div class="title"><h1>{{ post.title }}</h1></div>
-            <div class="date"><h6>{{ post.date }}</h6></div>
+            <div class="date"><h6>added: {{ post.date }}</h6></div>
             <div class="content">
-                <img class="img-responsive" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
+                <img class="img-responsive hidden" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
                 <button class ='btn' id="btn-{{ forloop.counter }}">show on map</button>
                 <div class="map" id="map-{{ forloop.counter }}"></div>
             </div>
@@ -71,6 +71,12 @@
     function myFunction(x) {
         x.classList.toggle("change");
     }
+
+    $(document).ready(function() {
+        $('img').on('load', function(){
+            $('img').removeClass('hidden');
+        });
+    });
     </script>
 </body>
 </html>
