@@ -13,24 +13,33 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Wh9y-iDmfYfB5xfA2dgu-ownSHL-AUo&callback=initMap">
     </script>
-
 </head>
 <body>
-<div class="stripe"></div>
-<div class="container-fluid">
-    <div class="header">
-        <h1>about something and nothing...</h1>
-        <h5>~ by adrian borkowski</h5>
+<!-- <div class="stripe"></div> -->
+    <div class="button" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
     </div>
-    {% for post in object_list %}
-        <div class="title"><h1>{{ post.title }}</h1></div>
-        <div class="date"><h6>{{ post.date }}</h6></div>
-        <div class="content">
-            <img class="img-responsive" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
-            <button class ='btn' id="btn-{{ forloop.counter }}">show on map</button>
-            <div class="map" id="map-{{ forloop.counter }}"></div>
+
+    <div class="header">
+        <div class="container-fluid">
+            <h1>about something and nothing...</h1>
+            <h5>~ by adrian borkowski</h5>
         </div>
-    {% endfor %}
+    </div>
+    <div>
+        {% for post in object_list %}
+            <div class="title"><h1>{{ post.title }}</h1></div>
+            <div class="date"><h6>{{ post.date }}</h6></div>
+            <div class="content">
+                <img class="img-responsive" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
+                <button class ='btn' id="btn-{{ forloop.counter }}">show on map</button>
+                <div class="map" id="map-{{ forloop.counter }}"></div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="footer">© 2017 adrian borkowski. all rights reserved.</div>
 
     <script>
     {% for post in object_list %}
@@ -59,8 +68,9 @@
         {% endfor %}
     });
 
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
     </script>
-</div>
- <div id="footer"> © 2017 adrian borkowski. all rights reserved. </div>
 </body>
 </html>
