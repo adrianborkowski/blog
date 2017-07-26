@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+    {% load social_widgets %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>asanblog</title>
@@ -15,31 +16,34 @@
     </script>
 </head>
 <body>
-<!-- <div class="stripe"></div> -->
-    <div class="button" onclick="myFunction(this)">
+<!--<div class="stripe"></div> -->
+<!--<div class="button" onclick="myFunction(this)">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
+    </div>-->
+
+    <div class="header container-fluid">
+        <h1 id="title">about something and nothing...</h1>
+        <h5>~ by adrian borkowski</h5>
     </div>
 
-    <div class="header">
-        <div class="container-fluid">
-            <h1>about something and nothing...</h1>
-            <h5>~ by adrian borkowski</h5>
-        </div>
-    </div>
-    <div>
-        {% for post in object_list %}
+    {% for post in object_list %}
+        <div class="post container-fluid" id="{{ forloop.counter }}">
             <div class="title"><h1>{{ post.title }}</h1></div>
             <div class="date"><h6>added: {{ post.date }}</h6></div>
-            <div class="content">
-                <img class="img-responsive hidden" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
-                <button class ='btn' id="btn-{{ forloop.counter }}">show on map</button>
-                <div class="map" id="map-{{ forloop.counter }}"></div>
+            <img class="img-responsive hidden" id="post-{{ forloop.counter }}" src="{{ post.image.url }}" alt="{{ post.title }}">
+            <div class="menu-bar">
+                <button class="map-button" id="btn-{{ forloop.counter }}">show on map</button>
+                <button class="share-button">
+                    {% social_widget_render "facebook/share_button.html" href="127.0.0.1/#{{ forloop.counter }}" layout="button" size="large" %}
+                </button>
             </div>
-        {% endfor %}
-    </div>
-    <div id="footer">© 2017 adrian borkowski. all rights reserved.</div>
+            <div class="map" id="map-{{ forloop.counter }}"></div>
+        </div>
+    {% endfor %}
+
+    <div class="container-fluid" id="footer">© 2017 adrian borkowski. all rights reserved.</div>
 
     <script>
     {% for post in object_list %}

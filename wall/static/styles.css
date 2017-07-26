@@ -1,5 +1,6 @@
 body {
     font-family: 'Days One', sans-serif;
+    text-transform: lowercase;
     // background-color:  #e6e6ff;
 }
 
@@ -18,6 +19,10 @@ body {
     text-align: center;
 }
 
+#title {
+    font-size:4em;
+}
+
 .date {
 
 }
@@ -28,14 +33,41 @@ body {
     padding-left: 5vw;
 }
 
+.post {
+    margin: 10vh 0 10vh 0;
+    position: relative;
+}
+
+img {
+    height:100vh;
+}
+
 .hidden{
     opacity:0;
 }
 
-.btn{
+.menu-bar {
+    margin-top: -10vh;
+    opacity: 0.6;
+    display: inline;
+    position: absolute;
+}
+
+.map-button {
+    border: 0px;
+    padding: 0px;
+    height: 10vh;
+    width: 49vw;
     border-radius: 0px;
-    width: 100%;
     color: white;
+    background-color: #262626;
+}
+
+.share-button {
+    border: 0px;
+    padding: 0px;
+    height: 10vh;
+    width: 49vw;
     background-color: #262626;
 }
 
@@ -47,15 +79,12 @@ body {
     border: 5px solid #262626;
 }
 
-.content {
-        margin-bottom:15vh;
-}
-
-#footer{
-    height:8vh;
+#footer {
+    height: 8vh;
     background-color: #262626;
     color: white;
     text-align: center;
+    line-height: 8vh;
 }
 
 

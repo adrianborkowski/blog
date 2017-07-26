@@ -18,6 +18,6 @@ from django.contrib import admin
 from wall.views import BaseView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin', admin.site.urls),
     url(r'', BaseView.as_view()),
 ]

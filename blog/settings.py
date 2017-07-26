@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wall',
     'gdstorage',
+    'social_widgets',
 ]
 
 MIDDLEWARE = [
