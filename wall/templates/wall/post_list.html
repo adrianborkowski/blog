@@ -36,14 +36,15 @@
             <div class="menu-bar">
                 <button class="map-button" id="btn-{{ forloop.counter }}">show on map</button>
                 <button class="share-button">
-                    {% social_widget_render "facebook/share_button.html" href="127.0.0.1/#{{ forloop.counter }}" layout="button" size="large" %}
+                    {% social_widget_render "facebook/share_button.html" href="#{{ forloop.counter }}" layout="button" size="large" %}
                 </button>
             </div>
             <div class="map" id="map-{{ forloop.counter }}"></div>
         </div>
     {% endfor %}
 
-    <div class="container-fluid" id="footer">© 2017 adrian borkowski. all rights reserved.</div>
+    <div class="container-fluid" id="footer">© 2018
+        <a href="https://adrianborkowski.github.io/" target="blank">adrianborkowski</a>. all rights reserved.</div>
 
     <script>
     {% for post in object_list %}
