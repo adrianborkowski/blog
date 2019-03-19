@@ -86,7 +86,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -134,7 +133,6 @@ GOOGLE_DRIVE_STORAGE_SERVICE_EMAIL = 'adbor88@gmail.com'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-
 
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
