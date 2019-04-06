@@ -10,3 +10,12 @@ class BaseView(ListView):
 
     def get_queryset(self):
         return Post.objects.order_by('-id')
+
+
+class MapView(ListView):
+    model = Post
+    template_name = 'wall/map.html'
+    context_object_name = 'map'
+
+    def get_queryset(self):
+        return Post.objects.order_by('-id')
