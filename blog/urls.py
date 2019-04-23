@@ -19,6 +19,6 @@ from wall.views import BaseView, MapView
 
 urlpatterns = [
     url(r'^admin', admin.site.urls),
-    url(r'', BaseView.as_view()),
-    url(r'^map', MapView.as_view()),
+    url(r'^$', BaseView.as_view()),
+    url(r'^map$', MapView.as_view()),
 ]
