@@ -4,50 +4,34 @@
 {% load social_widgets %}
 <style>
     #global-map {
-    height: 425px;
+    height: 600px;
     color: red;
     }
 </style>
 <div id="global-map">map</div>
 
 <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('global-map'), {
-          zoom: 10,
-          center: {lat: -33.9, lng: 151.2}
-        });
-
-        setMarkers(map);
-      }
-
-      var places = [
+    function initMap() {
+        map = new OpenLayers.Map("global-map");
+        map.addLayer(new OpenLayers.Layer.OSM());
+        var places = [
             {% for post in object_list %}
                 ['{{ post.title }}', {{ post.lat }}, {{ post.lon }}, {{ forloop.counter }}],
             {% endfor %}
-      ];
-
-      function setMarkers(map) {
-        var image = {
-          url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-          size: new google.maps.Size(20, 32),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 32)
-        };
-        var shape = {
-          coords: [1, 1, 1, 20, 18, 20, 18, 1],
-          type: 'poly'
-        };
+        ];
         for (var i = 0; i < places.length; i++) {
-          var place = places[i];
-          var marker = new google.maps.Marker({
-            position: {lat: place[1], lng: place[2]},
-            map: map,
-            icon: image,
-            shape: shape,
-            title: place[0],
-            zIndex: place[3]
-          });
-        }
-      }
+            var place = places[i];
+            var lonLat = new OpenLayers.LonLat(place[2], place[1])
+                .transform(
+                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                    map.getProjectionObject() // to Spherical Mercator Projection
+                );
+            var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);
+            markers.addMarker(new OpenLayers.Marker(lonLat));
+        };
+        map.setCenter (0, 0);
+    };
+
     </script>
 {% endblock %}

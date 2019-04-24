@@ -14,6 +14,9 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Wh9y-iDmfYfB5xfA2dgu-ownSHL-AUo&callback=initMap">
     </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
 </head>
 <body>
 <div class="stripe"></div>
@@ -60,16 +63,18 @@
         {% for post in object_list %}
             $("#btn-{{ forloop.counter }}").click(function() {
                 $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap() {
-                    var place = {lat: {{ post.lat }}, lng: {{ post.lon }} };
-                    var map = new google.maps.Map($("#map-{{ forloop.counter }}")[0], {
-                      zoom: 15,
-                      center: place,
-                      mapTypeId: google.maps.MapTypeId.HYBRID
-                    });
-                    var marker = new google.maps.Marker({
-                      position: place,
-                      map: map
-                    });
+                    map = new OpenLayers.Map("map-{{ forloop.counter }}");
+                    map.addLayer(new OpenLayers.Layer.OSM());
+                    var lonLat = new OpenLayers.LonLat({{ post.lon }}, {{ post.lat }})
+                        .transform(
+                            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                            map.getProjectionObject() // to Spherical Mercator Projection
+                        );
+                    var zoom=16;
+                    var markers = new OpenLayers.Layer.Markers( "Markers" );
+                    map.addLayer(markers);
+                    markers.addMarker(new OpenLayers.Marker(lonLat));
+                    map.setCenter (lonLat, zoom);
                 });
             });
         {% endfor %}
