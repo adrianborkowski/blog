@@ -1,0 +1,138 @@
+body {
+    font-family: 'Days One', sans-serif;
+    text-transform: lowercase;
+    // background-color:  #e6e6ff;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.stripe {
+    background-color: #262626;
+    height: 2vh;
+}
+
+.header {
+    padding-top: 10vh;
+    height: 33vh;
+    text-align: center;
+}
+
+#title {
+    font-size:4em;
+}
+
+.date {
+
+}
+
+.title, .date{
+    background-color: #262626;
+    color:white;
+    padding-left: 5vw;
+}
+
+.post {
+    margin: 10vh 0 10vh 0;
+    position: relative;
+}
+
+img {
+    height:100vh;
+}
+
+.hidden{
+    opacity:0;
+}
+
+.menu-bar {
+    margin-top: -10vh;
+    opacity: 0.6;
+    display: inline;
+    position: absolute;
+}
+
+.map-button {
+    border: 0px;
+    padding: 0px;
+    height: 10vh;
+    width: 20vw;
+    border-radius: 0px;
+    color: white;
+    background-color: #262626;
+}
+
+.share-button {
+    border: 0px;
+    padding: 0px;
+    height: 10vh;
+    width: 20vw;
+    background-color: #262626;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.map {
+    width: 100%;
+    height: 50vh;
+    margin: auto;
+    display: none;
+    border: 5px solid #262626;
+}
+
+#footer {
+    height: 8vh;
+    background-color: #262626;
+    color: white;
+    text-align: center;
+    line-height: 8vh;
+}
+
+
+// menu icon
+
+.button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+#global-map {
+    height: 600px;
+}
