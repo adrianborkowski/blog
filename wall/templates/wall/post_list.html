@@ -8,13 +8,9 @@
     <title>asanblog</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'wall/styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_Wh9y-iDmfYfB5xfA2dgu-ownSHL-AUo&callback=initMap">
-    </script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
 </head>
@@ -48,7 +44,7 @@
     {% endfor %}
 
     {% endblock %}
-    <div class="container-fluid" id="footer">© 2018
+    <div class="container-fluid" id="footer">© 2019
         <a href="https://adrianborkowski.github.io/" target="blank">adrianborkowski</a>. all rights reserved.</div>
 
     <script>
@@ -59,10 +55,10 @@
     $("#post-{{ forloop.counter }}").attr("src", url);
     {% endfor %}
 
-    $(document).ready(function showHide() {
+     $(document).ready(function showHide() {
         {% for post in object_list %}
             $("#btn-{{ forloop.counter }}").click(function() {
-                $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap() {
+                $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap(){
                     map = new OpenLayers.Map("map-{{ forloop.counter }}");
                     map.addLayer(new OpenLayers.Layer.OSM());
                     var lonLat = new OpenLayers.LonLat({{ post.lon }}, {{ post.lat }})
@@ -74,7 +70,7 @@
                     var markers = new OpenLayers.Layer.Markers( "Markers" );
                     map.addLayer(markers);
                     markers.addMarker(new OpenLayers.Marker(lonLat));
-                    map.setCenter (lonLat, zoom);
+                    map.setCenter(lonLat, zoom);
                 });
             });
         {% endfor %}
