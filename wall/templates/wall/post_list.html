@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'wall/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
 
 </head>
 <body>
@@ -44,10 +45,10 @@
     {% endfor %}
 
     {% endblock %}
-    <div class="container-fluid" id="footer">© 2019
+    <div class="container-fluid" id="footer">© 2020
         <a href="https://adrianborkowski.github.io/" target="blank">adrianborkowski</a>. all rights reserved.</div>
 
-    <script>
+    <script type="text/javascript">
     {% for post in object_list %}
     var url = $("#post-{{ forloop.counter }}").attr('src')
     .replace('/view?usp=drivesdk','')
@@ -55,26 +56,24 @@
     $("#post-{{ forloop.counter }}").attr("src", url);
     {% endfor %}
 
-     $(document).ready(function showHide() {
-        {% for post in object_list %}
-            $("#btn-{{ forloop.counter }}").click(function() {
-                $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap(){
-                    map = new OpenLayers.Map("map-{{ forloop.counter }}");
-                    map.addLayer(new OpenLayers.Layer.OSM());
-                    var lonLat = new OpenLayers.LonLat({{ post.lon }}, {{ post.lat }})
-                        .transform(
-                            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-                            map.getProjectionObject() // to Spherical Mercator Projection
-                        );
-                    var zoom=16;
-                    var markers = new OpenLayers.Layer.Markers( "Markers" );
-                    map.addLayer(markers);
-                    markers.addMarker(new OpenLayers.Marker(lonLat));
-                    map.setCenter(lonLat, zoom);
+    {% for post in object_list %}
+        $("#btn-{{ forloop.counter }}").click(function() {
+            $("#map-{{ forloop.counter }}").slideToggle('fast', function initMap(){
+                var map = new ol.Map({
+                    target: 'map-{{ forloop.counter }}',
+                    layers: [
+                        new ol.layer.Tile({
+                            source: new ol.source.OSM()
+                        })
+                    ],
+                    view: new ol.View({
+                        center: ol.proj.fromLonLat([{{ post.lon }}, {{ post.lat }}]),
+                        zoom: 18
+                    })
                 });
             });
-        {% endfor %}
-    });
+        });
+    {% endfor %}
 
     function myFunction(x) {
         x.classList.toggle("change");
